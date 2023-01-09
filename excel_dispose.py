@@ -50,7 +50,8 @@ class ExcelDispose:
 		maxRow = wb_sheet.max_row
 		for i in range(2, maxRow+1):
 			cell_value = wb_sheet.cell(row=i, column=10).value
-			cell_value_split = cell_value.split('：')
+			# cell_value_split = cell_value.split('：')
+			cell_value_split = re.split("：|:", cell_value)
 
 			name_titlePhone = cell_value_split[1]
 			phone_titleAddress = cell_value_split[2]
@@ -71,6 +72,7 @@ class ExcelDispose:
 				pass
 
 			print('------------------------------')
+			print(f"第 {i} 行")
 			print(f"{self.titleName}：{name}")
 			print(f"{self.titlePhone}：{phone}")
 			print(f"{self.titleAddress}：{address}")
